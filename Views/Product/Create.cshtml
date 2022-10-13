@@ -1,0 +1,35 @@
+@model List<Category>;
+@{
+  ViewData["Title"] = "Product Create Page";
+  var categories = Model;
+}
+<h1 class="display-4">Product Create Page</h1>
+<form action="/Product/Save" class="container" method="post">
+  <div class="mb-3">
+    <label for="name" class="form-label">Product Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Product Name" name="Name">
+  </div>
+  <div class="mb-3">
+    <label for="slug" class="form-label">Slug</label>
+    <input type="text" class="form-control" id="slug" placeholder="Slug" name="Slug">
+  </div>
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" class="form-control" id="price" placeholder="Price" name="Price">
+  </div>
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" id="quantity" placeholder="Quantity" name="Quantity">
+  </div>
+  <div class="mb-3">
+    <label for="category" class="form-label">Category</label>
+    <select class="form-select" name="CategoryId">
+      <option selected>-- Choose Category -- </option>
+      @foreach (var category in categories)
+      {
+        <option value="@category.Id">@category.Name</option>
+      }
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
